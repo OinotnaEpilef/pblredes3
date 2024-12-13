@@ -7,7 +7,27 @@ email: felipetompsomf18@gmail.com
 # Resumo(Abstract):
 Este relatório apresenta o desenvolvimento de um sistema de apostas online descentralizado utilizando tecnologia de ledger distribuído (DLT) baseado em Ethereum. A solução elimina intermediários tradicionais, promovendo transparência, resistência a bloqueios governamentais e descentralização. O backend foi implementado em Python, com um frontend desenvolvido em React, integrados à blockchain simulada pelo Ganache. Este documento detalha a fundamentação teórica, metodologia e conclusões obtidas.
 # Introdução:
-A centralização em sistemas de apostas online tradicionais pode introduzir problemas como manipulações, taxas elevadas e suscetibilidade a restrições governamentais. Este projeto visa implementar um sistema descentralizado para apostas online, permitindo algumas funcionalidades, como cadastro e participação em eventos, transparência nos resultados, garantida por uma blockchain, resiliência a bloqueios governamentais. A tecnologia de ledger distribuído (DLT) foi escolhida devido à sua capacidade de armazenar informações de forma imutável e distribuída.
+As apostas online têm se tornado uma indústria em crescimento exponencial, atraindo milhões de usuários ao redor do mundo. Contudo, sistemas centralizados apresentam diversos desafios e limitações, incluindo:
+
+- Intermediação excessiva: Casas de apostas centralizadas frequentemente impõem altas taxas sobre os ganhos dos usuários.
+
+- Falta de transparência: Os cálculos das odds e o gerenciamento dos fundos são realizados em plataformas opacas, dificultando a verificação independente.
+
+- Vulnerabilidade a bloqueios governamentais: Regulamentações locais podem impedir a operação desses sistemas em determinadas regiões.
+
+- Riscos de manipulação: Como os resultados são frequentemente controlados por uma entidade central, existe o potencial para manipulações maliciosas.
+
+Diante desses problemas, surge a necessidade de uma solução descentralizada que elimine intermediários, promova transparência e resiliência, e possibilite aos usuários confiar plenamente na plataforma. A descentralização através da tecnologia de ledger distribuído (DLT) oferece uma alternativa robusta e confiável para resolver esses desafios.
+
+Este projeto visa desenvolver um sistema de apostas descentralizado baseado em blockchain, onde:
+
+- Usuários podem criar e participar de eventos de apostas.
+
+- Odds são calculadas dinamicamente com base na participação dos apostadores.
+
+- Resultados e transações são transparentes e imutáveis.
+
+A combinação de Ethereum e ferramentas como Ganache permite a implementação de contratos inteligentes para gerenciar apostas, resultados e distribuição de fundos de forma totalmente descentralizada. Este relatório detalha como o sistema foi projetado e implementado, abordando suas fundamentações teóricas, metodologia e principais resultados.
 # Fundamentação teórica:
 **Ethereum e Smart Contracts**
 
@@ -140,3 +160,9 @@ A implementação distribui as responsabilidades entre os nós sem a necessidade
 - A ordem das transações é garantida pela timestamp de cada requisição.
 
 - Logs das transações são armazenados na blockchain, garantindo auditabilidade.
+# Conclusão:
+O sistema descentralizado de apostas online atendeu aos requisitos de descentralização, transparência e resistência a bloqueios governamentais. Ao eliminar intermediários, o sistema reduz custos e aumenta a confiabilidade, uma vez que todas as transações e eventos são gerenciados em uma blockchain pública. A utilização de Ethereum garante transparência e imutabilidade, enquanto o Ganache permite simulação e testes eficientes antes de uma eventual implantação em uma rede principal.
+
+No backend, Python e Web3.py forneceram as ferramentas necessárias para interagir com a blockchain, enquanto Flask facilitou a criação de APIs RESTful. A implementação do algoritmo Ricart-Agrawala garantiu consistência no processamento de transações concorrentes, essencial para um sistema distribuído. No frontend, React e Web3.js ofereceram uma interface intuitiva e responsiva, permitindo que os usuários interagissem com o sistema de forma simples e eficiente.
+
+Além disso, o sistema demonstrou escalabilidade ao suportar o cadastro dinâmico de eventos e cálculo automático de odds baseado em valores apostados, mostrando potencial para ser expandido e adotado em casos de uso reais. Como próximos passos, seria possível explorar o uso de redes Ethereum Layer 2 para reduzir custos de transação, bem como a implementação de auditorias independentes para reforçar ainda mais a confiabilidade do sistema.
