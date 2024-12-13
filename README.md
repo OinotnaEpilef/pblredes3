@@ -65,7 +65,7 @@ A implementação distribui as responsabilidades entre os nós sem a necessidade
 # Metodologia
 1. Backend
 
-1.1 Desenvolvimento dos Smart Contracts:
+1.1. Desenvolvimento dos Smart Contracts:
 
 Os contratos foram criados em Solidity para gerenciar a lógica central do sistema. Isso incluiu:
 
@@ -75,13 +75,13 @@ Registro de apostas vinculadas a eventos específicos, garantindo segurança nas
 
 Distribuição automática de ganhos com base nas odds dinâmicas.
 
-1.2 Integração com Ganache:
+1.2. Integração com Ganache:
 
 O Ganache foi configurado localmente para simular uma rede Ethereum.
 
 O Web3.py foi utilizado para se conectar ao Ganache e realizar operações como deploy de contratos e execução de funções.
 
-1.3 Exposição de Endpoints RESTful:
+1.3. Exposição de Endpoints RESTful:
 
 Flask foi usado para criar APIs responsáveis por:
 
@@ -93,7 +93,7 @@ Consulta de resultados e atualização do histórico de apostas.
 
 O SQLite armazena históricos locais de transações e usuários para referência rápida.
 
-1.4 Operações de Saldo:
+1.4. Operações de Saldo:
 
 Cada usuário é associado a uma conta Ethereum no Ganache.
 
