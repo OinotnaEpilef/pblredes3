@@ -63,53 +63,53 @@ Para lidar com a concorrência distribuída, foi utilizado o algoritmo Ricart-Ag
 
 A implementação distribui as responsabilidades entre os nós sem a necessidade de uma autoridade central, reforçando a descentralização do sistema.
 # Metodologia
-1. Backend
+**1. Backend**
 
-1.1. Desenvolvimento dos Smart Contracts:
+**1.1 Desenvolvimento dos Smart Contracts:**
 
-Os contratos foram criados em Solidity para gerenciar a lógica central do sistema. Isso incluiu:
+- Os contratos foram criados em Solidity para gerenciar a lógica central do sistema. Isso incluiu:
 
-Cadastro de eventos com atributos como descrição, odds iniciais e status (ativo ou encerrado).
+- Cadastro de eventos com atributos como descrição, odds iniciais e status (ativo ou encerrado).
 
-Registro de apostas vinculadas a eventos específicos, garantindo segurança nas transações.
+- Registro de apostas vinculadas a eventos específicos, garantindo segurança nas transações.
 
-Distribuição automática de ganhos com base nas odds dinâmicas.
+- Distribuição automática de ganhos com base nas odds dinâmicas.
 
-1.2. Integração com Ganache:
+**1.2 Integração com Ganache:**
 
-O Ganache foi configurado localmente para simular uma rede Ethereum.
+- O Ganache foi configurado localmente para simular uma rede Ethereum.
 
-O Web3.py foi utilizado para se conectar ao Ganache e realizar operações como deploy de contratos e execução de funções.
+- O Web3.py foi utilizado para se conectar ao Ganache e realizar operações como deploy de contratos e execução de funções.
 
-1.3. Exposição de Endpoints RESTful:
+**1.3 Exposição de Endpoints RESTful:**
 
-Flask foi usado para criar APIs responsáveis por:
+- Flask foi usado para criar APIs responsáveis por:
 
-Cadastro de eventos (enviando os dados ao contrato).
+- Cadastro de eventos (enviando os dados ao contrato).
 
-Registro de apostas (interagindo com o contrato no Ethereum).
+- Registro de apostas (interagindo com o contrato no Ethereum).
 
-Consulta de resultados e atualização do histórico de apostas.
+- Consulta de resultados e atualização do histórico de apostas.
 
-O SQLite armazena históricos locais de transações e usuários para referência rápida.
+- O SQLite armazena históricos locais de transações e usuários para referência rápida.
 
-1.4. Operações de Saldo:
+**1.4 Operações de Saldo:**
 
-Cada usuário é associado a uma conta Ethereum no Ganache.
+- Cada usuário é associado a uma conta Ethereum no Ganache.
 
-Depósitos e saques são realizados como transações na blockchain, garantindo rastreabilidade.
+- Depósitos e saques são realizados como transações na blockchain, garantindo rastreabilidade.
 
-2. Frontend
+**2. Frontend**
 
-Interface de Cadastro e Apostas:
+**Interface de Cadastro e Apostas:**
 
-Uma interface em React foi desenvolvida para permitir que os usuários:
+- Uma interface em React foi desenvolvida para permitir que os usuários:
 
-Visualizem eventos ativos e seus detalhes, incluindo odds dinâmicas.
+    -Visualizem eventos ativos e seus detalhes, incluindo odds dinâmicas.
 
-Façam apostas de forma intuitiva, com validador para garantir que o saldo seja suficiente.
+    -Façam apostas de forma intuitiva, com validador para garantir que o saldo seja suficiente.
 
-Componentes reutilizáveis, como listas de eventos e modais para confirmação de apostas, foram implementados para agilidade e consistência visual.
+- Componentes reutilizáveis, como listas de eventos e modais para confirmação de apostas, foram implementados para agilidade e consistência visual.
 
 Consulta e Histórico:
 
