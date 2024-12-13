@@ -101,7 +101,7 @@ A implementação distribui as responsabilidades entre os nós sem a necessidade
 
 **2. Frontend**
 
-**Interface de Cadastro e Apostas:**
+**2.1 Interface de Cadastro e Apostas:**
 
 - Uma interface em React foi desenvolvida para permitir que os usuários:
 
@@ -111,32 +111,32 @@ A implementação distribui as responsabilidades entre os nós sem a necessidade
 
 - Componentes reutilizáveis, como listas de eventos e modais para confirmação de apostas, foram implementados para agilidade e consistência visual.
 
-Consulta e Histórico:
+**2.2 Consulta e Histórico:**
 
-Páginas para visualizar resultados passados e o histórico de apostas.
+- Páginas para visualizar resultados passados e o histórico de apostas.
 
-Saldo atualizado em tempo real, sincronizado com a blockchain.
+- Saldo atualizado em tempo real, sincronizado com a blockchain.
 
-Integração com Blockchain:
+**2.3 Integração com Blockchain:**
 
-Web3.js foi usado para interagir diretamente com os contratos na blockchain Ethereum, possibilitando:
+- Web3.js foi usado para interagir diretamente com os contratos na blockchain Ethereum, possibilitando:
 
-Consulta em tempo real dos dados armazenados na blockchain.
+    - Consulta em tempo real dos dados armazenados na blockchain.
 
-Envio de transações para registro de apostas e cadastro de novos eventos.
+    - Envio de transações para registro de apostas e cadastro de novos eventos.
 
-3. Concorrência Distribuída
+**3. Concorrência Distribuída**
 
-Implementação do Algoritmo Ricart-Agrawala:
+**3.1 Implementação do Algoritmo Ricart-Agrawala:**
 
-Cada máquina participante é tratada como um nó na rede distribuída.
+- Cada máquina participante é tratada como um nó na rede distribuída.
 
-Transações como registro de apostas e distribuição de ganhos são realizadas em uma região crítica protegida.
+- Transações como registro de apostas e distribuição de ganhos são realizadas em uma região crítica protegida.
 
-Os nós enviam mensagens de requisição e resposta para coordenar o acesso, garantindo que apenas um processo seja executado por vez.
+- Os nós enviam mensagens de requisição e resposta para coordenar o acesso, garantindo que apenas um processo seja executado por vez.
 
-Gerenciamento de Conflitos:
+**3.2 Gerenciamento de Conflitos:**
 
-A ordem das transações é garantida pela timestamp de cada requisição.
+- A ordem das transações é garantida pela timestamp de cada requisição.
 
-Logs das transações são armazenados na blockchain, garantindo auditabilidade.
+- Logs das transações são armazenados na blockchain, garantindo auditabilidade.
