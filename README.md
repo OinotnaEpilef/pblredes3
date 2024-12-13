@@ -105,9 +105,9 @@ A implementação distribui as responsabilidades entre os nós sem a necessidade
 
 - Uma interface em React foi desenvolvida para permitir que os usuários:
 
-    -Visualizem eventos ativos e seus detalhes, incluindo odds dinâmicas.
+    - Visualizem eventos ativos e seus detalhes, incluindo odds dinâmicas.
 
-    -Façam apostas de forma intuitiva, com validador para garantir que o saldo seja suficiente.
+    - Façam apostas de forma intuitiva, com validador para garantir que o saldo seja suficiente.
 
 - Componentes reutilizáveis, como listas de eventos e modais para confirmação de apostas, foram implementados para agilidade e consistência visual.
 
