@@ -69,11 +69,11 @@ A implementação distribui as responsabilidades entre os nós sem a necessidade
 
 - Os contratos foram criados em Solidity para gerenciar a lógica central do sistema. Isso incluiu:
 
-- Cadastro de eventos com atributos como descrição, odds iniciais e status (ativo ou encerrado).
+    - Cadastro de eventos com atributos como descrição, odds iniciais e status (ativo ou encerrado).
 
-- Registro de apostas vinculadas a eventos específicos, garantindo segurança nas transações.
+    - Registro de apostas vinculadas a eventos específicos, garantindo segurança nas transações.
 
-- Distribuição automática de ganhos com base nas odds dinâmicas.
+    - Distribuição automática de ganhos com base nas odds dinâmicas.
 
 **1.2 Integração com Ganache:**
 
@@ -85,11 +85,11 @@ A implementação distribui as responsabilidades entre os nós sem a necessidade
 
 - Flask foi usado para criar APIs responsáveis por:
 
-- Cadastro de eventos (enviando os dados ao contrato).
+    - Cadastro de eventos (enviando os dados ao contrato).
 
-- Registro de apostas (interagindo com o contrato no Ethereum).
+    - Registro de apostas (interagindo com o contrato no Ethereum).
 
-- Consulta de resultados e atualização do histórico de apostas.
+    - Consulta de resultados e atualização do histórico de apostas.
 
 - O SQLite armazena históricos locais de transações e usuários para referência rápida.
 
