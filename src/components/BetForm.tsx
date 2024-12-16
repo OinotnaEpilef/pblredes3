@@ -14,7 +14,6 @@ const BetForm: React.FC<BetFormProps> = ({ eventId }) => {
     await placeBet(eventId, choice, amount);
     alert('Aposta realizada com sucesso!');
   };
-
   return (
     <form onSubmit={handleSubmit}>
       <h3>Fazer Aposta</h3>

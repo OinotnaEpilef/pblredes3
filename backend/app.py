@@ -3,9 +3,11 @@ from web3 import Web3
 from database.models import session, Event
 from config import GANACHE_URL, CONTRACT_COMPILED_PATH
 import json
+from flask_cors import CORS
 
 app = Flask(__name__)
 w3 = Web3(Web3.HTTPProvider(GANACHE_URL))
+CORS(app)
 
 # Load the contract
 with open(CONTRACT_COMPILED_PATH, 'r') as file:
@@ -45,4 +47,4 @@ def place_bet():
     return jsonify({"status": "bet placed"})
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5454)
+    app.run(debug=True, port=5001)
