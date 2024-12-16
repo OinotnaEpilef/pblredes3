@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home.tsx';
-import EventDetails from './pages/EventDetails.tsx';
+import Home from './pages/Home';
+import EventDetails from './pages/EventDetails';
 
 const App: React.FC = () => {
   return (
