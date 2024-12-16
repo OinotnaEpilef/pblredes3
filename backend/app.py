@@ -45,4 +45,4 @@ def place_bet():
     return jsonify({"status": "bet placed"})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5454)
