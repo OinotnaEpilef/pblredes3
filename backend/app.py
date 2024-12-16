@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from web3 import Web3
 from database.models import session, Event
 from config import GANACHE_URL, CONTRACT_COMPILED_PATH
+import json
 
 app = Flask(__name__)
 w3 = Web3(Web3.HTTPProvider(GANACHE_URL))
