@@ -35,7 +35,6 @@ const LoginForm: React.FC = () => {
       <EventForm/>
       <EventList/>
     </form>
-    
   );
 };
 

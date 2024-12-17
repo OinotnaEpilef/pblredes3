@@ -47,7 +47,7 @@ def create_event():
     new_event = Event(description=description, side_a=side_a, side_b=side_b, odds_a=odds_a, odds_b=odds_b)
     session.add(new_event)
     session.commit()
-    return jsonify({"status": "success", "event_id": new_event.id})
+    return jsonify({"estatus": "success", "event_id": new_event.id})
 
 @app.route('/bet', methods=['POST'])
 def place_bet():
