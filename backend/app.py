@@ -30,7 +30,7 @@ def login():
 @app.route('/events', methods=['GET'])
 def get_events():
     events = session.query(Event).all()
-    return jsonify([{"id": e.id, "description": e.description, "odds": e.odds, "status": e.status} for e in events])
+    return jsonify([{"id": e.id, "description": e.description, "side_a": e.side_a, "side_b": e.side_b, "odds_a": e.odds_b, "status": e.status, "result": e.result} for e in events])
 
 @app.route('/events', methods=['POST'])
 def create_event():
