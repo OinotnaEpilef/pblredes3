@@ -7,8 +7,20 @@ export const getEvents = async () => {
   return response.data;
 };
 
-export const createEvent = async (description: string) => {
-  const response = await axios.post(`${API_BASE_URL}/events`, { description });
+export const createEvent = async (
+  description: string,
+  sideA: string,
+  sideB: string,
+  oddsA: number,
+  oddsB: number
+) => {
+  const response = await axios.post(`${API_BASE_URL}/events`, {
+    description,
+    side_a: sideA,
+    side_b: sideB,
+    odds_a: oddsA,
+    odds_b: oddsB,
+  });
   return response.data;
 };
 

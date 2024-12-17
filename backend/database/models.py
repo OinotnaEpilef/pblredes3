@@ -12,8 +12,17 @@ class Event(Base):
     __tablename__ = 'events'
     id = Column(Integer, primary_key=True, autoincrement=True)
     description = Column(String, nullable=False)
-    odds = Column(Float, nullable=False)
+    side_a = Column(String, nullable=False)
+    side_b = Column(String, nullable=False)
+    odds_a = Column(Float, nullable=False)
+    odds_b = Column(Float, nullable=False)
     status = Column(Boolean, default=True)
-    result = Column(String, nullable=True)
+    result = Column(String, nullable=False)
+
+class User(Base):
+    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    username = Column(String, unique=True, nullable=False)
+    balance = Column(Float, default=100.0)
 
 Base.metadata.create_all(engine)

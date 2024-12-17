@@ -14,6 +14,19 @@ with open(CONTRACT_COMPILED_PATH, 'r') as file:
     contract_data = json.load(file)
 contract = w3.eth.contract(address=CONTRACT_ADDRESS, abi=contract_data['abi'])
 
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.json
+    username = data['username']
+
+    user = session.query(User).filter_by(username=username).first()
+    if not user:
+        new_user = User(username=username, balance=100.0)
+        session.add(new_user)
+        session.commit()
+        return jsonify({"message": "User created", "username": username, "balance": 100.0})
+    return jsonify({"message": "User connected", "username": username, "balance": user.balance})
+
 @app.route('/events', methods=['GET'])
 def get_events():
     events = session.query(Event).all()
@@ -23,10 +36,15 @@ def get_events():
 def create_event():
     data = request.json
     description = data['description']
+    side_a = data['side_a']
+    side_b = data['side_b']
+    odds_a = data['odds_a']
+    odds_b = data['odds_b']
+
     tx_hash = contract.functions.createEvent(description).transact({'from': w3.eth.accounts[0]})
     tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
 
-    new_event = Event(description=description, odds=2.00)  # Odds iniciais fixas
+    new_event = Event(description=description, side_a=side_a, side_b=side_b, odds_a=odds_a, odds_b=odds_b)
     session.add(new_event)
     session.commit()
     return jsonify({"status": "success", "event_id": new_event.id})
