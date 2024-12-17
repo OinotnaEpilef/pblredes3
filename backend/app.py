@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 from web3 import Web3
-from database.models import session, Event, User
+from database.models import session, Event, User, Bet
 from config import GANACHE_URL, CONTRACT_COMPILED_PATH, CONTRACT_ADDRESS
 import json
 from flask_cors import CORS
@@ -41,13 +41,16 @@ def create_event():
     odds_a = data['odds_a']
     odds_b = data['odds_b']
 
-    tx_hash = contract.functions.createEvent(description).transact({'from': w3.eth.accounts[0]})
+    # Chamada correta da função do contrato
+    tx_hash = contract.functions.createEvent(description, side_a, side_b, odds_a, odds_b).transact({'from': w3.eth.accounts[0]})
     tx_receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
 
+    # Criar evento no banco de dados
     new_event = Event(description=description, side_a=side_a, side_b=side_b, odds_a=odds_a, odds_b=odds_b)
     session.add(new_event)
     session.commit()
-    return jsonify({"estatus": "success", "event_id": new_event.id})
+
+    return jsonify({"status": "success", "event_id": new_event.id})
 
 @app.route('/bet', methods=['POST'])
 def place_bet():
@@ -55,14 +58,40 @@ def place_bet():
     event_id = data['event_id']
     choice = data['choice']
     amount = data['amount']
+    user_id = data['user_id']  # A id do usuário que está fazendo a aposta
 
-    event = session.query(Event).filter_by(id=event_id).first()
-    if not event or not event.status:
-        return jsonify({"error": "Invalid event"}), 400
+    # Buscar o evento no banco de dados
+    evento = session.query(Event).filter_by(id=event_id).first()
+    if not evento:
+        return jsonify({"erro": "Evento não encontrado"}), 404
 
-    tx_hash = contract.functions.placeBet(event_id, choice).transact({'from': w3.eth.accounts[0], 'value': amount})
-    w3.eth.wait_for_transaction_receipt(tx_hash)
-    return jsonify({"status": "bet placed"})
+    # Buscar o usuário
+    usuario = session.query(User).filter_by(id=user_id).first()
+    if not usuario:
+        return jsonify({"erro": "Usuário não encontrado"}), 404
+
+    if usuario.saldo < amount:
+        return jsonify({"erro": "Saldo insuficiente"}), 400
+
+    # Atualizar o saldo do usuário
+    usuario.saldo -= amount
+    session.commit()
+
+    # Registrar a aposta na tabela 'apostas'
+    aposta = Bet(event_id=event_id, user_id=user_id, amount=amount, choice=choice)
+    session.add(aposta)
+    session.commit()
+
+    # Interação com o contrato inteligente para registrar a aposta
+    try:
+        tx_hash = contract.functions.placeBet(event_id, choice).transact({'from': w3.eth.accounts[0], 'value': amount})
+        w3.eth.wait_for_transaction_receipt(tx_hash)
+    except Exception as e:
+        session.rollback()
+        return jsonify({"erro": f"Erro ao registrar a aposta no contrato: {str(e)}"}), 500
+
+    return jsonify({"status": "Aposta realizada com sucesso", "aposta_id": aposta.id}), 200
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)

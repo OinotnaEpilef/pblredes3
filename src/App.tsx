@@ -4,6 +4,7 @@ import { UserProvider } from '../src/components/UserContext';
 import Header from './components/Header';
 import LoginForm from './components/LoginForm';
 import EventForm from './components/EventForm';
+import EventDetails from './pages/EventDetails';
 
 const App: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<LoginForm />} />
           <Route path="/create-event" element={<EventForm />} />
+          <Route path='`/event/${event.id}`' element={<EventDetails />} />
         </Routes>
       </Router>
     </UserProvider>

@@ -15,7 +15,7 @@ export const createEvent = async (
   oddsB: number
 ) => {
   const response = await axios.post(`${API_BASE_URL}/events`, {
-    description,
+    description: description,
     side_a: sideA,
     side_b: sideB,
     odds_a: oddsA,
@@ -27,9 +27,4 @@ export const createEvent = async (
 export const placeBet = async (eventId: number, choice: string, amount: number) => {
   const response = await axios.post(`${API_BASE_URL}/bet`, { event_id: eventId, choice, amount });
   return response.data;
-};
-
-export const updateBalance = async (username: string) => {
-  const response = await axios.get(`${API_BASE_URL}/users/${username}`);
-  return response.data.balance;
 };

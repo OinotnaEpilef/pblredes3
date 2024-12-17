@@ -1,6 +1,6 @@
-from sqlalchemy import create_engine, Column, Integer, String, Float, Boolean, DateTime
+from sqlalchemy import create_engine, Column, Integer, String, Float, Boolean, DateTime, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, relationship
 from config import DATABASE_URI
 
 Base = declarative_base()
@@ -24,5 +24,20 @@ class User(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     username = Column(String, unique=True, nullable=False)
     balance = Column(Float, default=100.0)
+
+class Bet(Base):
+    __tablename__ = 'bets'
+    id = Column(Integer, primary_key=True)
+    event_id = Column(Integer, ForeignKey('event.id'), nullable=False)
+    user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
+    amount = Column(Float, nullable=False)
+    choice = Column(String, nullable=False)
+
+    event = relationship("Event", backref="bets")
+    user = relationship("User", backref="bets")
+
+    def __repr__(self):
+        return f"<Bet(id={self.id}, event_id={self.event_id}, user_id={self.user_id}, amount={self.amount}, choice={self.choice})>"
+
 
 Base.metadata.create_all(engine)

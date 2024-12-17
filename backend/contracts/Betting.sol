@@ -23,7 +23,7 @@ contract BettingSystem {
 
     Event[] public events;
 
-    event EventCreated(uint256 eventId, string description, string side, string sideB, uint256 oddsA, uint256 oddsB);
+    event EventCreated(uint256 eventId, string description, string sideA, string sideB, uint256 oddsA, uint256 oddsB);
     event BetPlaced(uint256 eventId, address indexed user, uint256 amount, string choice);
     event EventClosed(uint256 eventId, string result);
 
