@@ -10,7 +10,7 @@ contract BettingSystem {
 
     struct Event {
         string description;
-        string sideA;
+        string sideA; 
         string sideB;
         uint256 oddsA;
         uint256 oddsB;

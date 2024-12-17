@@ -1,16 +1,21 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import EventDetails from './pages/EventDetails';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { UserProvider } from '../src/components/UserContext';
+import Header from './components/Header';
+import LoginForm from './components/LoginForm';
+import EventForm from './components/EventForm';
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/event/:id" element={<EventDetails />} />
-      </Routes>
-    </Router>
+    <UserProvider>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<LoginForm />} />
+          <Route path="/create-event" element={<EventForm />} />
+        </Routes>
+      </Router>
+    </UserProvider>
   );
 };
 

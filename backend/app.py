@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 from web3 import Web3
-from database.models import session, Event
+from database.models import session, Event, User
 from config import GANACHE_URL, CONTRACT_COMPILED_PATH, CONTRACT_ADDRESS
 import json
 from flask_cors import CORS
