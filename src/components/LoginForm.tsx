@@ -23,18 +23,20 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <h2>Login</h2>
-      <input
-        type="text"
-        placeholder="Nome de usuário"
-        value={usernameInput}
-        onChange={(e) => setUsernameInput(e.target.value)}
-      />
-      <button type="submit">Entrar</button>
+    <div>
+      <form onSubmit={handleLogin}>
+        <h2>Login</h2>
+        <input
+          type="text"
+          placeholder="Nome de usuário"
+          value={usernameInput}
+          onChange={(e) => setUsernameInput(e.target.value)}
+        />
+        <button type="submit">Entrar</button>
+      </form>
       <EventForm/>
       <EventList/>
-    </form>
+    </div>
   );
 };
 
