@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useUser } from './UserContext';
 import EventList from './EventList';
+import EventForm from './EventForm';
 
 const LoginForm: React.FC = () => {
   const [usernameInput, setUsernameInput] = useState('');
@@ -31,6 +32,7 @@ const LoginForm: React.FC = () => {
         onChange={(e) => setUsernameInput(e.target.value)}
       />
       <button type="submit">Entrar</button>
+      <EventForm/>
       <EventList/>
     </form>
     
