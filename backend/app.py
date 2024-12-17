@@ -58,7 +58,7 @@ def place_bet():
     event_id = data['event_id']
     choice = data['choice']
     amount = data['amount']
-    user_id = data['user_id']  # A id do usuário que está fazendo a bet
+    user_id = data['user_id'] 
 
     # Buscar o evento no banco de dados
     event = session.query(Event).filter_by(id=event_id).first()
