@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { createEvent } from '../api';
+import Header from './Header';
 
 const EventForm: React.FC = () => {
   const [description, setDescription] = useState('');
