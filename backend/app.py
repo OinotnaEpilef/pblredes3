@@ -58,40 +58,51 @@ def place_bet():
     event_id = data['event_id']
     choice = data['choice']
     amount = data['amount']
-    user_id = data['user_id']  # A id do usuário que está fazendo a aposta
+    user_id = data['user_id']  # A id do usuário que está fazendo a bet
 
     # Buscar o evento no banco de dados
-    evento = session.query(Event).filter_by(id=event_id).first()
-    if not evento:
+    event = session.query(Event).filter_by(id=event_id).first()
+    if not event:
         return jsonify({"erro": "Evento não encontrado"}), 404
 
     # Buscar o usuário
-    usuario = session.query(User).filter_by(id=user_id).first()
-    if not usuario:
+    user = session.query(User).filter_by(id=user_id).first()
+    if not user:
         return jsonify({"erro": "Usuário não encontrado"}), 404
 
-    if usuario.saldo < amount:
+    if user.balance < amount:
         return jsonify({"erro": "Saldo insuficiente"}), 400
 
     # Atualizar o saldo do usuário
-    usuario.saldo -= amount
+    user.balance -= amount
     session.commit()
 
-    # Registrar a aposta na tabela 'apostas'
-    aposta = Bet(event_id=event_id, user_id=user_id, amount=amount, choice=choice)
-    session.add(aposta)
+    # Registrar a bet na tabela 'bets'
+    bet = Bet(event_id=event_id, user_id=user_id, amount=amount, choice=choice)
+    session.add(bet)
     session.commit()
 
-    # Interação com o contrato inteligente para registrar a aposta
+    # Interação com o contrato inteligente para registrar a bet
     try:
         tx_hash = contract.functions.placeBet(event_id, choice).transact({'from': w3.eth.accounts[0], 'value': amount})
         w3.eth.wait_for_transaction_receipt(tx_hash)
     except Exception as e:
         session.rollback()
-        return jsonify({"erro": f"Erro ao registrar a aposta no contrato: {str(e)}"}), 500
+        return jsonify({"erro": f"Erro ao registrar a bet no contrato: {str(e)}"}), 500
 
-    return jsonify({"status": "Aposta realizada com sucesso", "aposta_id": aposta.id}), 200
+    return jsonify({"status": "bet realizada com sucesso", "bet_id": bet.id}), 200
 
+@app.route('/user_bets/<int:user_id>', methods=['GET'])
+def get_user_bets(user_id):
+    bets = Bet.query.filter_by(user_id=user_id).all()
+    if not bets:
+        return jsonify({"erro": "Nenhuma bet encontrada para esse usuário"}), 404
+    
+    return jsonify([{
+        "evento_id": bet.evento_id,
+        "quantia": bet.quantia,
+        "escolha": bet.escolha
+    } for bet in bets]), 200
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)

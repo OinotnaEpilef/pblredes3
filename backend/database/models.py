@@ -28,8 +28,8 @@ class User(Base):
 class Bet(Base):
     __tablename__ = 'bets'
     id = Column(Integer, primary_key=True)
-    event_id = Column(Integer, ForeignKey('event.id'), nullable=False)
-    user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
+    event_id = Column(Integer, ForeignKey('events.id'), nullable=False)
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
     amount = Column(Float, nullable=False)
     choice = Column(String, nullable=False)
 
