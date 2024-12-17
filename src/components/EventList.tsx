@@ -65,6 +65,7 @@ const EventList: React.FC = () => {
           <p>
             <strong>Odds:</strong> {event.odds_a} - {event.odds_b}
           </p>
+
           {event.status && (
             <div>
               <h4>Apostar</h4>
